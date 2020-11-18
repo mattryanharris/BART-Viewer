@@ -11,7 +11,7 @@ for x in xrange(0,2):
 		print("Error: {}").format(data['root']['station'][0]['message']['error'])
 		break
 	time = data['root']['station'][0]['etd'][x]['estimate'][0]['minutes']
-	if name == 'Leaving':
+	if time == 'Leaving':
 		print('The ' + name + ' train is leaving now')
 	else:
 		print('The {} train is arriving in {} minutes.').format(name, time)
