@@ -7,10 +7,11 @@ data = response.json()
 for x in xrange(0,2):
 	try:
 		name = data['root']['station'][0]['etd'][x]['destination']
-	except KeyError:
-		print("Error: {}").format(data['root']['station'][0]['message']['error'])
+	except KeyError as e:
+		print(e)
+		#print("Error: {}").format(data['root']['message'])
 		break
-	time = data['root']['station'][0]['etd'][x]['estimate'][0]['minutes']
+	time = data['root']['station'][0]['etd'][x]['estimate'][0]['minutes'][0]
 	if time == 'Leaving':
 		print('The ' + name + ' train is leaving now')
 	else:

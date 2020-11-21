@@ -44,7 +44,15 @@ class Train extends Component {
       return <div>Loading...</div>;
     } else {
       return (
-      <p>{this.state.name} : {this.state.items.station[0].etd[0].destination} : {this.state.items.station[0].etd[0].estimate[0].minutes}</p>
+
+        <div className="card">
+  <div className="card-body">
+    <h5 className="card-title">{this.state.name}</h5>
+    <h6 className="card-subtitle mb-2 text-muted">{this.state.items.station[0].etd[0].destination}</h6>
+    <p className="card-text">ETA: {this.state.items.station[0].etd[0].estimate[0].minutes} minutes</p>
+
+  </div>
+</div>
 
       
       );
@@ -56,9 +64,50 @@ class App extends Component {
 	constructor(props) {
     super(props);
     this.state = {
-      abbreviations:[{name: "Balboa", abbreviation:"balb"}, 
+      abbreviations:[
+      {name: "12th St. Oakland City Center", abbreviation: "12th"},
+      {name: "16th St Mission (SF)", abbreviation:"16th"},
+      {name: "19th St. Oakland", abbreviation:"19th"},
+      {name: "24th St. Mission (SF)", abbreviation:"24th"},
+      {name: "Ashby (Berkeley)", abbreviation:"ashb"},
+      {name: "Balboa Park (SF)", abbreviation:"balb"},
+      {name: "Bay Fair (SF)", abbreviation:"bayf"},
+      {name: "Castro Valley", abbreviation:"cast"},
+      {name: "Civic Center", abbreviation:"civc"},
+      {name: "Coliseum", abbreviation:"colm"},
+      {name: "Concord", abbreviation:"conc"},
+      {name: "Daly City", abbreviation:"daly"},
+      {name: "Downtown Berkeley", abbreviation:"dbrk"},
+      {name: "Dublin/Pleasonton", abbreviation:"dubl"},
+      {name: "El Cerrito del Norte", abbreviation:"deln"},
+      {name: "El Cerrito Plaza", abbreviation:"plza"},
+      {name: "Embarcedero", abbreviation:"embr"},
+      {name: "Fremont", abbreviation:"frmt"},
+      {name: "Fruitvake", abbreviation:"ftvl"},
+      {name: "Glen Park (SF)", abbreviation:"glen"},
+      {name: "Hayward", abbreviation:"hayw"},
+      {name: "Lafeyette", abbreviation:"lafy"},
+      {name: "Lake Merritt (Oakland)", abbreviation:"lake"},
+      {name: "MacArthur (Oakland)", abbreviation:"mcar"},
+      {name: "Milbrae", abbreviation:"mlbr"},
+      {name: "Mongtomgery St (SF)", abbreviation:"colm"},
+      {name: "North Berkeley", abbreviation:"nbrk"},
+      {name: "North Concord", abbreviation:"ncon"},
+      {name: "Orinda", abbreviation:"orin"},
+      {name: "Pittsburg/Baypoint", abbreviation:"pitt"},
+      {name: "Pleasant Hill", abbreviation:"phil"},
+      {name: "Powell St. (SF)", abbreviation:"powl"},
+      {name: "Richmond", abbreviation:"rich"},
+      {name: "Rockridge (Oakland)", abbreviation:"rock"},
+      {name: "San Bruno", abbreviation:"sbrn"},
       {name: "San Francisco International", abbreviation:"sfia"},
-      {name: "16th St and Mission", abbreviation:"16th"}]
+      {name: "San Leandro", abbreviation:"sanl"},
+      {name: "South Hayward", abbreviation:"shay"},
+      {name: "South San Francisco", abbreviation:"ssan"},
+      {name: "Union City", abbreviation:"ucty"},
+      {name: "Warm Springs/South Fremont", abbreviation:"warm"},
+      {name: "Walnut Creek", abbreviation:"wcrk"},
+      {name: "West Oakland", abbreviation:"woak"}]
     }
   }
 
