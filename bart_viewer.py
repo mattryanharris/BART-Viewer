@@ -1,7 +1,6 @@
 import requests
 import json
 
-#station = raw_input("What station: ")
 stations = {"12th St. Oakland City Center": "12th",
       "16th St Mission (SF)":"16th",
       "19th St. Oakland":"19th",
@@ -15,19 +14,19 @@ stations = {"12th St. Oakland City Center": "12th",
       "Concord":"conc",
       "Daly City":"daly",
       "Downtown Berkeley":"dbrk",
-      "Dublin/Pleasonton":"dubl",
+      "Dublin/Pleasanton":"dubl",
       "El Cerrito del Norte":"deln",
       "El Cerrito Plaza":"plza",
-      "Embarcedero":"embr",
+      "Embarcadero":"embr",
       "Fremont":"frmt",
-      "Fruitvake":"ftvl",
+      "Fruitvale":"ftvl",
       "Glen Park (SF)":"glen",
       "Hayward":"hayw",
-      "Lafeyette":"lafy",
+      "Lafayette":"lafy",
       "Lake Merritt (Oakland)":"lake",
       "MacArthur (Oakland)":"mcar",
-      "Milbrae":"mlbr",
-      "Mongtomgery St (SF)":"colm",
+      "Millbrae":"mlbr",
+      "Montgomery St (SF)":"colm",
       "North Berkeley":"nbrk",
       "North Concord":"ncon",
       "Orinda":"orin",
@@ -48,7 +47,7 @@ stations = {"12th St. Oakland City Center": "12th",
 
 train_list_ab=list(stations.values())
 train_list_names=list(stations.keys())
-
+train_count = 0
 for x in xrange(0,len(train_list_ab)):
 	response = requests.get("http://api.bart.gov/api/etd.aspx?cmd=etd&key=MW9S-E7SL-26DU-VV8V&orig=%s&json=y" % train_list_ab[x])
 	data = response.json()
@@ -57,15 +56,19 @@ for x in xrange(0,len(train_list_ab)):
 			name = data['root']['station'][0]['etd'][y]['destination']
 		except KeyError:
 			# etd is an error that indicates no train data available 
-			print('Data is currently unavailable for %s train' % train_list_names[x])
+			print('Data is currently unavailable for %s train\n' % train_list_names[x])
 			#print("Error: {}").format(data['root']['message'])
 			break
 		except IndexError:
 			name = data['root']['station'][0]['etd'][0]['destination']
+			time = data['root']['station'][0]['etd'][0]['estimate'][0]['minutes']
 			break
 		time = data['root']['station'][0]['etd'][y]['estimate'][0]['minutes'][0]
-		if time == 'Leaving':
+		train_count += 1
+		if time == "Leaving":
 			print('The ' + name + ' train is leaving now')
 		else:
 			print('{}\'s {} train is arriving in {} minutes.').format(train_list_names[x], name, time)
+
+print("Currently {} out of {} trains are running").format(train_count, len(train_list_ab))
 
